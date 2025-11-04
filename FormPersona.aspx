@@ -12,6 +12,11 @@
     <asp:TextBox ID="txtTelefono" CssClass="form-control" placeholder="Telefono" runat="server"></asp:TextBox>
     <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
     
+  <asp:Button ID="btnMostrar" runat="server" CssClass="btn btn-primary" Text="Guardar" OnClick="btn_guardar" />
+    <asp:Button ID="btnActualizar" runat="server" CssClass="btn btn-success" Text="Actualizar" OnClick="btnActualizar_Click" />
+    <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-secondary" Text="Cancelar edición" OnClick="btnCancelar_Click" />
+    <asp:Button ID="btnLimpiar" runat="server" CssClass="btn btn-warning" Text="Limpiar campos" OnClick="btnLimpiar_Click" />
+    <asp:Button ID="btnCargar" runat="server" CssClass="btn btn-info" Text="Mostrar todos" OnClick="btnCargar_Click" />
 
     <asp:Button ID="btnMostrar" runat="server" CssClass="btn btn-primary btn-hover-move" Text="Guardar" OnClick="btn_guardar" />
     <asp:Button ID="btnActualizar" runat="server" CssClass="btn btn-primary btn-hover-move" Text="Actualizar" OnClick="btnActualizar_Click" />
