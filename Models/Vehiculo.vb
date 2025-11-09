@@ -1,12 +1,13 @@
 ﻿Public Class Vehiculo
     ' Atributos de la clase Vehiculo
     Private _idVehiculo As Integer
+    Private _idPropietario As Integer
     Private _marca As String
     Private _modelo As String
     Private _anio As Integer
     Private _color As String
     Private _placa As String
-    Private _idPropietario As Integer
+
 
     'Constructor de la clase Vehiculo Vacio
     Public Sub New()
@@ -14,8 +15,9 @@
     End Sub
 
     'Constructor de la clase Vehiculo
-    Public Sub New(idVehiculo As Integer, marca As String, modelo As String, anio As Integer, color As String, placa As String)
+    Public Sub New(idVehiculo As Integer, idPropietario As Integer, marca As String, modelo As String, anio As Integer, color As String, placa As String)
         Me.IdVehiculo = idVehiculo
+        Me.IdPropietario = idPropietario
         Me.Marca = marca
         Me.Modelo = modelo
         Me.Anio = anio
@@ -33,6 +35,7 @@
             _idVehiculo = value
         End Set
     End Property
+
 
     Public Property Marca As String
         Get

@@ -1,10 +1,14 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class dbPersona
+    'Cadena de conexión desde Web.config'
     Public ReadOnly ConnectionString As String = ConfigurationManager.ConnectionStrings("Progra_lllConnectionString").ConnectionString
+
+
+    'Método para crear una nueva Persona
     Public Function create(Persona As Persona) As Boolean
         Try
-            Dim sql As String = "INSERT INTO Persona (Nombre, Apellido1, Apellido2, Nacionalidad, FechaNacimiento,Telefono ) VALUES (@Nombre, @Apellido1, @Apellido2,  @Nacionalidad,  @FechaNacimiento, @Telefono )"
+            Dim sql As String = "INSERT INTO Personas (Nombre, Apellido1, Apellido2, Nacionalidad, FechaNacimiento,Telefono ) VALUES (@Nombre, @Apellido1, @Apellido2,  @Nacionalidad,  @FechaNacimiento, @Telefono )"
             Dim Parametros As New List(Of SqlParameter) From {
             New SqlParameter("@Nombre", Persona.Nombre),
             New SqlParameter("@Apellido1", Persona.Apellido1),
@@ -21,18 +25,22 @@ Public Class dbPersona
                     command.ExecuteNonQuery()
                 End Using
             End Using
+            Return True
         Catch ex As Exception
+            ''Return "Error al guardar la persona: " & ex.Message
             Return False
         End Try
 
         Return True
     End Function
 
-    Public Function delete(ByRef id As Integer) As String
+    'Método para eliminar una Persona por ID
+    Public Function delete(ByRef id As Integer) As Boolean
+
         Try
-            Dim sql As String = "DELETE FROM Persona WHERE ID = @Id"
+            Dim sql As String = "DELETE FROM Personas WHERE IdPersona = @IdPersona"
             Dim Parametros As New List(Of SqlParameter) From {
-            New SqlParameter("@Id", id)
+            New SqlParameter("@IdPersona", id)
         }
             Using connetion As New SqlConnection(ConnectionString)
                 Using command As New SqlCommand(sql, connetion)
@@ -41,18 +49,25 @@ Public Class dbPersona
                     command.ExecuteNonQuery()
                 End Using
             End Using
+
+            Return True
+
         Catch ex As Exception
         End Try
-        Return "Persona eliminada"
+        Return False
     End Function
 
-    Public Function update(ByRef Persona As Persona) As String
+    'Método para actualizar una Persona
+    Public Function update(ByRef Persona As Persona) As Boolean
+
         Try
-            Dim sql As String = "UPDATE Persona SET Nombre = @Nombre, Apellido1 = @Apellido1,  Apellido2 = @Apellido2 , Nacionalidad =@Nacionalidad, FechaNacimiento =@FechaNacimiento, Telefono=@Telefono WHERE ID = @Id"
+            Dim sql As String = "UPDATE Personas SET Nombre = @Nombre, Apellido1 = @Apellido1,  Apellido2 = @Apellido2 , 
+                                Nacionalidad =@Nacionalidad, FechaNacimiento =@FechaNacimiento, Telefono=@Telefono WHERE IdPersona = @IdPersona"
+
             Dim Parametros As New List(Of SqlParameter) From {
-            New SqlParameter("@Id", Persona.IdPersona),
+            New SqlParameter("@IdPersona", Persona.IdPersona),
             New SqlParameter("@Nombre", Persona.Nombre),
-            New SqlParameter("@Apellido", Persona.Apellido1),
+            New SqlParameter("@Apellido1", Persona.Apellido1),
             New SqlParameter("@Apellido2", Persona.Apellido2),
             New SqlParameter("@Nacionalidad", Persona.Nacionalidad),
             New SqlParameter("@FechaNacimiento", Persona.FechaNacimiento),
@@ -65,9 +80,27 @@ Public Class dbPersona
                     command.ExecuteNonQuery()
                 End Using
             End Using
+            Return True
         Catch ex As Exception
         End Try
-        Return "Persona actualizada"
+        Return False
     End Function
 
+    'Método para leer todas las Personas
+    Public Function readAll() As DataTable
+        Dim datos_tabla As New DataTable()
+        Try
+            Dim sql As String = "SELECT * FROM Personas ORDER BY IdPersona DESC"
+            Using connection As New SqlConnection(ConnectionString)
+                Using command As New SqlCommand(sql, connection)
+                    Dim adapter As New SqlDataAdapter(command)
+                    adapter.Fill(datos_tabla)
+                End Using
+            End Using
+        Catch ex As Exception
+
+        End Try
+        Return datos_tabla
+
+    End Function
 End Class

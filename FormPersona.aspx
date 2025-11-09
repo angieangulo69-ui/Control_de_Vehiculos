@@ -1,51 +1,88 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="FormPersona.aspx.vb" Inherits="Control_de_Vehiculos.FormPersona" %>
+﻿<%@ Page Title="Gestión de Personas" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="FormPersona.aspx.vb" Inherits="Control_de_Vehiculos.FormPersona" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
     <asp:HiddenField ID="editando" runat="server"/> 
 
-<div class="container d-flex flex-column mb-3 gap-2">
+    <div class="container mt-4 mb-5">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-primary text-white text-center rounded-top-4">
+                <h3 class="mb-0">Gestión de Personas</h3>
+            </div>
 
-    <asp:TextBox ID="txtNombre" CssClass="form-control" placeholder="Nombre" runat="server"></asp:TextBox>
-    <asp:TextBox ID="txtApellido1" CssClass="form-control" placeholder="Apellido1" runat="server"></asp:TextBox>
-    <asp:TextBox ID="txtApellido2" CssClass="form-control" placeholder="Apellido2" runat="server"></asp:TextBox>
-    <asp:TextBox ID="txtNacionalidad" CssClass="form-control" placeholder="Nacionalidad" runat="server"></asp:TextBox>
-    <asp:TextBox ID="txtFechaNacimiento" CssClass="form-control" TextMode="Date" placeholder="Fecha de Nacimiento" runat="server"></asp:TextBox>
-    <asp:TextBox ID="txtTelefono" CssClass="form-control" placeholder="Telefono" runat="server"></asp:TextBox>
-    <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
-    
-  <asp:Button ID="btnMostrar" runat="server" CssClass="btn btn-primary" Text="Guardar" OnClick="btn_guardar" />
-    <asp:Button ID="btnActualizar" runat="server" CssClass="btn btn-success" Text="Actualizar" OnClick="btnActualizar_Click" />
-    <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-secondary" Text="Cancelar edición" OnClick="btnCancelar_Click" />
-    <asp:Button ID="btnLimpiar" runat="server" CssClass="btn btn-warning" Text="Limpiar campos" OnClick="btnLimpiar_Click" />
-    <asp:Button ID="btnCargar" runat="server" CssClass="btn btn-info" Text="Mostrar todos" OnClick="btnCargar_Click" />
+            <div class="card-body p-4">
+                <div class="row g-3">
 
-    <asp:Button ID="btnMostrar" runat="server" CssClass="btn btn-primary btn-hover-move" Text="Guardar" OnClick="btn_guardar" />
-    <asp:Button ID="btnActualizar" runat="server" CssClass="btn btn-primary btn-hover-move" Text="Actualizar" OnClick="btnActualizar_Click" />
+                    <div class="col-md-4">
+                        <asp:TextBox ID="txtNombre" CssClass="form-control" placeholder="Nombre" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4">
+                        <asp:TextBox ID="txtApellido1" CssClass="form-control" placeholder="Primer Apellido" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4">
+                        <asp:TextBox ID="txtApellido2" CssClass="form-control" placeholder="Segundo Apellido" runat="server"></asp:TextBox>
+                    </div>
 
-    <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
+                    <div class="col-md-4">
+                        <asp:TextBox ID="txtNacionalidad" CssClass="form-control" placeholder="Nacionalidad" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4">
+                        <asp:TextBox ID="txtFechaNacimiento" CssClass="form-control" TextMode="Date" placeholder="Fecha de Nacimiento" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4">
+                        <asp:TextBox ID="txtTelefono" CssClass="form-control" placeholder="Teléfono" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+                            
+                <div class="mt-4 d-flex flex-wrap gap-2 justify-content-center">
+                 <asp:Button ID="btnMostrar" runat="server" CssClass="btn btn-primary btn-hover-move" Text="Guardar" OnClick="btn_guardar" />
+                <asp:Button ID="btnActualizar" runat="server" CssClass="btn btn-primary btn-hover-move" Text="Actualizar" OnClick="btnActualizar_Click" />
+                </div>                                  
+                </div>
 
-</div>
-<asp:GridView ID="gvPersonas" CssClass="table table-striped table-hover table-success" runat="server" AutoGenerateColumns="False"
-    DataSourceID="SqlDataSource1" DataKeyNames="ID" 
-    OnRowDeleting="gvPersonas_RowDeleting" 
-    OnRowEditing="gvPersonas_RowEditing" 
-    OnRowCancelingEdit="gvPersonas_RowCancelingEdit" 
-    OnRowUpdating="gvPersonas_RowUpdating" 
-    OnSelectedIndexChanged="gvPersonas_SelectedIndexChanged">
-    <Columns>
-        <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
-        <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-        <asp:BoundField DataField="Apellido1" HeaderText="Apellido1" SortExpression="Apellido1" />
-        <asp:BoundField DataField="Apellido2" HeaderText="Apellido2" SortExpression="Apellido2" />
-        <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" SortExpression="Nacionalidad" />
-        <asp:BoundField DataField="FechaNacimiento" HeaderText="FechaNacimiento" SortExpression="FechaNacimiento" />
-        <asp:BoundField DataField="Telefono" HeaderText="Telefono" SortExpression="Telefono" />
-        
+                <div class="text-center mt-3">
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="fw-bold text-primary"></asp:Label>
+                </div>
+            </div>
+        </div>
 
-        <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
-            
-        
-    </Columns>
+        <div class="card shadow-lg border-0 rounded-4 mt-4">
+            <div class="card-header bg-secondary text-white text-center rounded-top-4">
+                <h4 class="mb-0">Listado de Personas</h4>
+            </div>
+            <div class="card-body">
+                <asp:GridView 
+                   ID="gvPersonas" 
+                   runat="server" 
+                   AutoGenerateColumns="False"
+                   DataKeyNames="IdPersona"
+                   CssClass  ="table table-striped table-hover text-center align-middle"
+                   OnRowDeleting="gvPersonas_RowDeleting"
+                   OnRowEditing="gvPersonas_RowEditing"
+                   OnRowUpdating ="gvPersonas_RowUpdating"
+                   OnRowCancelingEdit ="gvPersonas_RowCancelingEdit"
+                   OnSelectedIndexChanged="gvPersonas_SelectedIndexChanged">
+
+     <Columns>
+      
+        <asp:CommandField ShowSelectButton="True" ControlStyle-CssClass="btn btn-success" />
+            <asp:CommandField ShowEditButton="True" ControlStyle-CssClass="btn btn-primary" />
+            <asp:BoundField DataField="idPersona" HeaderText="ID" Visible="False" ReadOnly="True" SortExpression="idPersona" />
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
+            <asp:BoundField DataField="Apellido1" HeaderText="Primer Apellido" SortExpression="Apellido1" />
+            <asp:BoundField DataField="Apellido2" HeaderText="Segundo Apellido" SortExpression="Apellido2" />
+            <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" SortExpression="Nacionalidad" />
+             <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha Nacimiento" DataFormatString="{0:yyyy-MM-dd}" />
+            <asp:BoundField DataField="Telefono" HeaderText="Telefono" SortExpression="Telefono" />
+            <asp:CommandField ShowDeleteButton="True" ControlStyle-CssClass="btn btn-danger" />
+</Columns>
+
+    <HeaderStyle CssClass="table-dark text-white" />
+    <RowStyle CssClass="table-light" />
+
 </asp:GridView>
-<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Progra_lllConnectionString %>" ProviderName="<%$ ConnectionStrings:Progra_lllConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Personas]"></asp:SqlDataSource>
- 
+                
+            </div>
+        </div>
+   
 </asp:Content>
