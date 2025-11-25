@@ -1,47 +1,46 @@
 ﻿Public Class Propietario
     Inherits Persona 'Herencia de persona'
-    ' Atributos de la clase Propietario
-    Private _idPropietario As Integer
-    Private _numVehiculos As String
+    'Atributos de la clase Propietarios'
+    Private _IdPropietarios As Integer
+    Private _Nombre As String
+    Private _Telefono As Integer
 
-
-    'Constructor de la clase Propietario Vacio del objeto Persona, porque hereda de la clase Persona
-    Public Sub New()
-        MyBase.New()
-    End Sub
-
-    'Constructor de la clase Propietario
-    Public Sub New(idPropietario As Integer, numVehiculos As String, persona As Persona)
-        'Permite ponerle los datos de la clase Persona al constructor de la clase Propietario
-        MyBase.New(persona.IdPersona, persona.Nombre, persona.Apellido1, persona.Apellido2, persona.Nacionalidad,
-                   persona.FechaNacimiento, persona.Telefono)
-        _idPropietario = idPropietario
-        _numVehiculos = numVehiculos
-    End Sub
-
-    Public Sub New(idPropietario As Integer,
-                   numVehiculos As String)
-        _idPropietario = idPropietario
-        _numVehiculos = numVehiculos
-    End Sub
-
-
-    'Propiedades de la clase Propietario 
-    Public Property IdPropietario As Integer
+    Public Property IdPropietarios As Integer
         Get
-            Return _idPropietario
+            Return _IdPropietarios
         End Get
         Set(value As Integer)
-            _idPropietario = value
+            _IdPropietarios = value
         End Set
     End Property
 
-    Public Property NumVehiculos As String
+    Public Property Nombre1 As String
         Get
-            Return _numVehiculos
+            Return _Nombre
         End Get
         Set(value As String)
-            _numVehiculos = value
+            _Nombre = value
         End Set
     End Property
+
+    Public Property Telefono1 As Integer
+        Get
+            Return _Telefono
+        End Get
+        Set(value As Integer)
+            _Telefono = value
+        End Set
+    End Property
+
+    'Constructor de la clase Propietarios'
+    Public Sub New(idPropietarios As Integer, nombre As String, telefono As Integer)
+        Me.IdPropietarios = idPropietarios
+        Me.Nombre = nombre
+        Me.Telefono = telefono
+    End Sub
+    'Constructor vacio de la clase Propietarios'
+    Public Sub New()
+    End Sub
+    'Propiedades de la clase Propietarios'
+
 End Class
