@@ -5,7 +5,7 @@ Public Class dbLogin
 
         Public Function ValidateLogin(ByRef usuario As String, ByRef password As String) As Boolean
             Try
-                Dim sql As String = "SELECT COUNT(*) FROM Usuarios WHERE NombreUsuario = @Usuario AND Contrasena = @Password"
+            Dim sql As String = "SELECT COUNT(*) FROM Usuarios WHERE NombreUsuario = @Usuario AND Contrasena = @Password AND Activo = 1"
             Dim Parametros As New List(Of SqlParameter) From {
                 New SqlParameter("@Usuario", usuario),
                 New SqlParameter("@Password", password)
@@ -42,6 +42,33 @@ Public Class dbLogin
         End Try
 
         Return "Usuario registrado correctamente."
+    End Function
+
+    Public Function GetUser(usuario As String) As Usuario
+        Dim sql As String = "SELECT IdUsuario, NombreUsuario, Email, Rol, Activo 
+                         FROM Usuarios 
+                         WHERE NombreUsuario = @Usuario"
+
+        Dim parametros As New List(Of SqlParameter) From {
+        New SqlParameter("@Usuario", usuario)
+    }
+
+        Dim dt As DataTable = dbHelper.ExecuteQuery(sql, parametros)
+
+        If dt.Rows.Count = 0 Then
+            Return Nothing ' Usuario no existe
+        End If
+
+        Dim row = dt.Rows(0)
+
+        Dim UsuarioObj As New Usuario()
+        UsuarioObj.IdUsuario = CInt(row("IdUsuario"))
+        UsuarioObj.NombreUsuario = row("NombreUsuario").ToString()
+        UsuarioObj.Email = row("Email").ToString()
+        UsuarioObj.Rol = row("Rol").ToString()
+        UsuarioObj.Activo = Convert.ToBoolean(row("Activo"))
+
+        Return UsuarioObj
     End Function
 End Class
 

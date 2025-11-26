@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Registro.aspx.vb" Inherits="Control_de_Vehiculos.Registro" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
       <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
 
         <div class="card-body">
@@ -35,6 +36,7 @@
         </div>
 
     </div>
+        </div>
 
     
 

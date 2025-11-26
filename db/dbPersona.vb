@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Security.Cryptography.X509Certificates
 
 Public Class dbPersona
     'Cadena de conexión desde Web.config'
@@ -101,6 +102,15 @@ Public Class dbPersona
 
         End Try
         Return datos_tabla
+    End Function
 
+    Public Function Consulta() As DataTable
+        Dim sql As String = "SELECT *, CONCAT(Nombre, ' ', Apellido1,' ',Apellido2,' ') AS NombreCompleto FROM Personas"
+
+        ' Crear instancia de DbHelper
+        Dim db As New DbHelper()
+
+        ' Llamar al método de instancia
+        Return db.ExecuteDataTable(sql, New List(Of SqlParameter)())
     End Function
 End Class

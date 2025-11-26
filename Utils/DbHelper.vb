@@ -4,6 +4,9 @@ Imports System.Data.SqlClient
 Public Class DbHelper
     Public ReadOnly ConnectionString As String = ConfigurationManager.ConnectionStrings("Progra_lllConnectionString").ConnectionString
 
+    Public Function ExecuteDataTable(sql As String, params As List(Of SqlParameter)) As DataTable
+        Return ExecuteQuery(sql, params)
+    End Function
     Public Sub New()
         EnsureErrorLogTableExists() ' Asegúrate de que la tabla exista al crear una instancia.
     End Sub
@@ -137,6 +140,14 @@ Public Class DbHelper
 
     Public Function CreateParameter(name As String, value As Object) As SqlParameter
         Return New SqlParameter(name, If(value IsNot Nothing, value, DBNull.Value))
+    End Function
+
+    Public Function ConsultarPorId(id As Integer) As DataTable
+        Dim sql As String = "SELECT Nombre, Apellido1, Apellido2, Nacionalidad, FechaNacimiento, Telefono FROM Personas WHERE IdPersona=@Id"
+        Dim parameters As New List(Of SqlParameter) From {
+            CreateParameter("@Id", id)
+        }
+        Return ExecuteDataTable(sql, parameters)
     End Function
 
 End Class
