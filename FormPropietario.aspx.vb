@@ -52,5 +52,7 @@ Public Class FormPropietario
             txtFechaNacimiento.Text = Convert.ToDateTime(row("FechaNacimiento")).ToString("yyyy-MM-dd")
             txtTelefono.Text = row("Telefono").ToString()
         End If
+        Response.Redirect("FormVehiculo.aspx?IdPersona=" & idPersona)
     End Sub
+
 End Class

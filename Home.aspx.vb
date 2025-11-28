@@ -11,8 +11,8 @@
 
         Dim UsuarioObj As Usuario = CType(Session("Usuario"), Usuario)
 
-        lblNombre.Text = "Bienvenido " & UsuarioObj.NombreUsuario
-        lblEmail.Text = "Correo Electrónico: " & UsuarioObj.Email
+        lblNombre.Text = UsuarioObj.NombreUsuario
+        lblEmail.Text = UsuarioObj.Email
 
     End Sub
 
