@@ -75,4 +75,13 @@ Partial Public Class FormPropietario
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents txtTelefono As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control btnSeleccionar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnSeleccionar As Global.System.Web.UI.WebControls.Button
 End Class

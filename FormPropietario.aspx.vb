@@ -7,7 +7,7 @@ Public Class FormPropietario
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Not IsPostBack Then
+        If Not IsPostBack Then ' Primera vez que se carga la página
             CargarPersona()
         End If
 
@@ -19,14 +19,15 @@ Public Class FormPropietario
         Dim dt As DataTable = db.ExecuteDataTable("SELECT IdPersona, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS NombreCompleto FROM Personas", New List(Of SqlParameter)())
 
         ddlPersona.DataSource = dt
-        ddlPersona.DataTextField = "NombreCompleto" ' lo que se ve en la lista
-        ddlPersona.DataValueField = "IdPersona"    ' el valor real
+        ddlPersona.DataTextField = "NombreCompleto"
+        ddlPersona.DataValueField = "IdPersona"
         ddlPersona.DataBind()
-
-        ddlPersona.Items.Insert(0, New ListItem("--Seleccione--", "0")) ' valor por defecto
+        ddlPersona.Items.Insert(0, New ListItem("--Seleccione--", "0"))
     End Sub
 
-    Protected Sub ddlPersona_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+
+    Protected Sub btnSeleccionar_Click(sender As Object, e As EventArgs)
         If ddlPersona.SelectedValue = "0" Then
             ' Limpiar campos si no se selecciona ninguna persona
             txtNombre.Text = ""
