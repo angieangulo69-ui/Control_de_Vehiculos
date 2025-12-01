@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Login.aspx.vb" Inherits="Control_de_Vehiculos.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     
-<!-- 🎨 ESTILO MODERNO -->
+<!--  ESTILO MODERNO -->
     <style>
         body {
             background: linear-gradient(135deg, #95d5b2, #74c69d, #52b788);
